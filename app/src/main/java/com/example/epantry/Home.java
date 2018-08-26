@@ -22,7 +22,7 @@ public class Home extends AppCompatActivity {
         tvUsername = (TextView) findViewById(R.id.usernameInput); //create a TextView as matching type in xml
         username = getIntent().getStringExtra("Username");
         tvUsername.setText(username);
-      tvUsername.setText(getIntent().getStringExtra("Hi"));
+//      tvUsername.setText(getIntent().getStringExtra("Username"));
 
         tvPassword = (TextView) findViewById(R.id.passwordInput); //create a TextView as matching type in xml
         password = getIntent().getStringExtra("Password");
