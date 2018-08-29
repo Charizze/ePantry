@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="299dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="83dp"
+        android:layout_marginTop="36dp"
         android:text="Name:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,6 +90,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
