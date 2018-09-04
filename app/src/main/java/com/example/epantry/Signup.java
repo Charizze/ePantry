@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * test method to make sure it creates new user with login if no match - assertNotNull
+ * test method that username field isn't empty
+ * test method that it checks password matches confirmed password
+ */
 package com.example.epantry;
 
 import android.app.Activity;
@@ -27,6 +33,19 @@ public class Signup extends Activity {
         ETconfirmpassword = (EditText) findViewById(R.id.TFconfirmpassword);
     }
 
+    public boolean checkFilledTextFields(String username, String password) {
+        boolean valid;
+        if (findViewById(R.id.TFname) != null && findViewById(R.id.TFemail) != null
+                && findViewById(R.id.TFloginPassword) != null && findViewById(R.id.TFconfirmpassword) != null) {
+            valid = true;
+            Log.i("Signup", "true");
+        } else {
+            valid = false;
+            Log.i("Signup", "false");
+        }
+        return valid;
+    }
+
     public void onSignupClick(View v) {
         if (v.getId() == R.id.Bsignup) {
             String username = ETusername.getText().toString();
@@ -34,7 +53,7 @@ public class Signup extends Activity {
             String password = ETpassword.getText().toString();
             String confirmpassword = ETconfirmpassword.getText().toString();
 
-            if(!email.contains("@.com")) {
+            if (!email.contains("@.com")) {
                 Toast pass = Toast.makeText(Signup.this, "Email must be valid!", Toast.LENGTH_SHORT);
                 pass.show();
             }
@@ -42,9 +61,13 @@ public class Signup extends Activity {
                 //popup msg
                 Toast pass = Toast.makeText(Signup.this, "Passwords don't match!", Toast.LENGTH_SHORT);
                 pass.show();
-            } else if (password.equals(confirmpassword) && !password.isEmpty()) {
-                Intent i = new Intent(Signup.this, Home.class);
-                startActivity(i);
+            } else if (password.equals(confirmpassword) && !password.isEmpty() && checkFilledTextFields(username, email)) {
+
+                if (checkFilledTextFields(username, email)) {
+                    Log.i("Signup", "Confirmed login");
+                    Intent i = new Intent(Signup.this, Home.class);
+                    startActivity(i);
+                }
             }
         }
     }
