@@ -20,6 +20,7 @@ public class Signup extends Activity {
     EditText ETemail;
     EditText ETpassword;
     EditText ETconfirmpassword;
+    Database db = new Database(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,9 @@ public class Signup extends Activity {
         ETconfirmpassword = (EditText) findViewById(R.id.TFconfirmpassword);
     }
 
-    public boolean checkFilledTextFields(String username, String password) {
+   /* public boolean checkFilledTextFields(String username, String email) {
         boolean valid;
-        if (findViewById(R.id.TFname) != null && findViewById(R.id.TFemail) != null
-                && findViewById(R.id.TFloginPassword) != null && findViewById(R.id.TFconfirmpassword) != null) {
+        if (!(username.isEmpty() && email.isEmpty())) {
             valid = true;
             Log.i("Signup", "true");
         } else {
@@ -44,7 +44,7 @@ public class Signup extends Activity {
             Log.i("Signup", "false");
         }
         return valid;
-    }
+    }*/
 
     public void onSignupClick(View v) {
         if (v.getId() == R.id.Bsignup) {
@@ -61,13 +61,15 @@ public class Signup extends Activity {
                 //popup msg
                 Toast pass = Toast.makeText(Signup.this, "Passwords don't match!", Toast.LENGTH_SHORT);
                 pass.show();
-            } else if (password.equals(confirmpassword) && !password.isEmpty() && checkFilledTextFields(username, email)) {
+            }
+            if (password.equals(confirmpassword) && !password.isEmpty() && !(username.isEmpty() && email.isEmpty())) {
 
-                if (checkFilledTextFields(username, email)) {
+                User user = new User(username, email, password);
+                db.addUser(user);
+
                     Log.i("Signup", "Confirmed login");
                     Intent i = new Intent(Signup.this, Home.class);
                     startActivity(i);
-                }
             }
         }
     }

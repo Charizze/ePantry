@@ -15,6 +15,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.amitshekhar.DebugDB;
+
+import java.util.List;
+
 public class Login extends AppCompatActivity {
 
     EditText TFloginUsername;
@@ -28,6 +32,22 @@ public class Login extends AppCompatActivity {
 
 //        TFloginUsername = (EditText) findViewById(R.id.TFloginUsername);
 //        TFloginPassword = (EditText) findViewById(R.id.TFloginPassword);
+
+
+        Log.i("Login", DebugDB.getAddressLog());
+        Database db = new Database(this);
+        //add Users
+        db.addUser(new User("username", "password", "email"));
+
+        //http://192.168.1.70:8080/#
+
+
+       // List<User> list = db.getAllUsers();
+        // delete one user
+      //  db.deleteUser(list.get(0));
+
+        // get all users
+        db.getAllUsers();
     }
 
     public void onClick(View v) {
